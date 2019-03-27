@@ -48,6 +48,7 @@ function init() {
       document.getElementsByTagName("tbody")[0].addEventListener("mouseenter", function () {
             document.getElementsByTagName("tbody")[0].style.cursor = "pointer";
       })
+      document.getElementById("showSolution").addEventListener("click", solvePuzzle)
 }
 
 function cellBackground() {
@@ -105,7 +106,12 @@ function cellEndBackground() {
       }
 }
 
-
+function solvePuzzle() {
+      var buttonSolve = document.getElementsByClassName("wordCell");
+      for (var b = 0; b < buttonSolve.length; b++) {
+            buttonSolve[b].style.backgroundColor = "light green";
+      }
+}
 
 
 /*============================================================*/
