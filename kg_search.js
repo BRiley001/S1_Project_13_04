@@ -24,8 +24,10 @@
       on the items in the list array
 
 */
+// The init function is run when the page loads
 window.onload = init;
 
+// Variables to be used in function later, including arrays.
 var wordCells;
 var pickedInputLetters = "";
 var pickedWord = "";
@@ -34,6 +36,8 @@ var selectedWord = [];
 var numCorrectWords = [];
 var solvedWords = [];
 var solvedPuzzle = [];
+
+// The init function  will create the word search, and set up event listeners and give values to variables. Event listeners allow for words to be selected, and use the solve puzzle button to see the solution to the puzzle
 function init() {
       document.getElementById("wordTable").innerHTML = drawWordSearch(letterGrid, wordGrid);
       document.getElementById("wordList").innerHTML = showList(wordArray);
@@ -51,6 +55,7 @@ function init() {
       document.getElementById("showSolution").addEventListener("click", solvePuzzle)
 }
 
+// The cell background function will make the first selected letter pink, and give event listeners so that letters can be hovered over to select. I puts the letter into box to the right
 function cellBackground() {
       event.target.style.backgroundColor = "pink";
       selectedWord.push(event.target);
@@ -63,6 +68,7 @@ function cellBackground() {
       document.getElementById("pickedLetters").value = pickedInputLetters;
 }
 
+// The cell extend background function makes all letters picked afterwards tuen pink, and stores those letters on the right. Cells that have been selected cannot be selected again.
 function cellExtBackground() {
       event.target.style.backgroundColor = "pink";
       event.target.removeEventListener("mouseenter", cellExtBackground);
@@ -71,6 +77,7 @@ function cellExtBackground() {
       selectedWord.push(event.target);
 }
 
+// The cell end background willremove the needed event listeners so that it no longer will select more letters without another click. It also checks for whether all the words have been gotten, whether one word has been gotten, and crosses that letter out. If correct the word turns green.
 function cellEndBackground() {
       selectedWord.push(event.target);
       for (var i = 0; i < wordCells.length; i++) {
@@ -106,10 +113,11 @@ function cellEndBackground() {
       }
 }
 
+// The solve puzzle function will make the solve puzzle button display all the correct answers in a light green, so that you can see the solutions.
 function solvePuzzle() {
-      var buttonSolve = document.getElementsByClassName("wordCell");
-      for (var b = 0; b < buttonSolve.length; b++) {
-            buttonSolve[b].style.backgroundColor = "light green";
+      var solving = document.querySelectorAll(".wordCell")
+      for (var b = 0; b < solving.length; b++) {
+            solving[b].style.backgroundColor = "lightgreen";
       }
 }
 
